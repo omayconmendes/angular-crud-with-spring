@@ -13,7 +13,7 @@ export class CoursesService {
   constructor(private httpClient: HttpClient) { }
 
   list(): Observable<Course[]> {
-    return this.httpClient.get<Course[]>('assets/courses.json')
+    return this.httpClient.get<Course[]>('api/courses')
     .pipe(
       first(),
       delay(3000),
