@@ -19,6 +19,10 @@ export class CoursesService {
     );
   };
 
+  getById(id: string) {
+    return this.httpClient.get<Course>(`api/courses/${id}`);
+  }
+
   save (record: Partial<Course>) {
     if (record._id) {
       return this.update(record);
@@ -39,7 +43,9 @@ export class CoursesService {
     );
   }
 
-  getById(id: string) {
-    return this.httpClient.get<Course>(`api/courses/${id}`);
+  remove(id: string) {
+    return this.httpClient.delete(`api/courses/${id}`).pipe(
+      first()
+    );
   }
 }
