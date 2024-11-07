@@ -12,3 +12,10 @@ mat-card {
   width: 100%;
   min-width: 150px;
 }
+
+.action-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
