@@ -1,5 +1,6 @@
 package com.maycon;
 
+import com.maycon.enums.Category;
 import com.maycon.model.Course;
 import com.maycon.repository.CourseRepository;
 import org.springframework.boot.CommandLineRunner;
@@ -21,7 +22,7 @@ public class CrudSpringApplication {
 
 			Course c = new Course();
 			c.setName("Angular com Spring");
-			c.setCategory("Front-end");
+			c.setCategory(Category.FRONT_END);
 			courseRepository.save(c);
 		};
 	}
