@@ -2,6 +2,7 @@ package com.maycon;
 
 import com.maycon.enums.Category;
 import com.maycon.model.Course;
+import com.maycon.model.Lesson;
 import com.maycon.repository.CourseRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -23,6 +24,19 @@ public class CrudSpringApplication {
 			Course c = new Course();
 			c.setName("Angular com Spring");
 			c.setCategory(Category.FRONT_END);
+
+			Lesson l1 = new Lesson();
+			l1.setName("Introdução");
+			l1.setYoutubeUrl("8D_a9wr8yMA");
+			l1.setCourse(c);
+			c.getLessons().add(l1);
+
+			Lesson l2 = new Lesson();
+			l2.setName("Angular");
+			l2.setYoutubeUrl("8D_a9wr8yMA");
+			l2.setCourse(c);
+			c.getLessons().add(l2);
+
 			courseRepository.save(c);
 		};
 	}
