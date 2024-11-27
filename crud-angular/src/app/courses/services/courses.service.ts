@@ -31,7 +31,7 @@ export class CoursesService {
   }
 
   private create(record: Partial<Course>) {
-    return this.httpClient.post<Course>('api/courses', record)
+    return this.httpClient.post<Course>('api/courses/', record)
     .pipe(
       first()
     );
