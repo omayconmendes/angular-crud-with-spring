@@ -4,6 +4,7 @@ import com.maycon.dto.CourseDTO;
 import com.maycon.dto.LessonDTO;
 import com.maycon.enums.Category;
 import com.maycon.model.Course;
+import com.maycon.model.Lesson;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -32,6 +33,17 @@ public class CourseMapper {
         }
         course.setName(courseDTO.name());
         course.setCategory(convertCategoryValue(courseDTO.category()));
+
+        List<Lesson> lessons = courseDTO.lessons().stream().map(lessonDTO -> {
+            var lesson = new Lesson();
+            lesson.setId(lessonDTO.id());
+            lesson.setName(lessonDTO.name());
+            lesson.setYoutubeUrl(lessonDTO.youtubeUrl());
+            lesson.setCourse(course);
+            return lesson;
+        }).collect(Collectors.toList());
+
+        course.setLessons((lessons));
         return course;
     }
 
