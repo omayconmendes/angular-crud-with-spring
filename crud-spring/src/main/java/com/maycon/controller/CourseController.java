@@ -1,15 +1,16 @@
 package com.maycon.controller;
 
 import com.maycon.dto.CourseDTO;
+import com.maycon.dto.CoursePageDTO;
 import com.maycon.service.CourseService;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.PositiveOrZero;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @Validated
 @RestController
@@ -23,8 +24,10 @@ public class CourseController {
     }
 
     @GetMapping
-    public List<CourseDTO> list() {
-        return courseService.list();
+    public CoursePageDTO list(
+            @RequestParam(name = "page", defaultValue = "0") @PositiveOrZero int pageNumber,
+            @RequestParam(name = "size", defaultValue = "10") @Positive @Max(100) int pageSize) {
+        return courseService.list(pageNumber, pageSize);
     }
 
     @GetMapping("/{id}")
