@@ -4,16 +4,19 @@ import { Observable } from 'rxjs';
 import { first, tap } from 'rxjs/operators';
 
 import { Course } from '../model/course';
+import { CoursePage } from '../model/course-page';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CoursesService {
 
+  private readonly API = 'api/courses/';
+
   constructor(private httpClient: HttpClient) { }
 
-  list(): Observable<Course[]> {
-    return this.httpClient.get<Course[]>('api/courses/')
+  list(page = 0, pageSize = 10): Observable<CoursePage> {
+    return this.httpClient.get<CoursePage>(this.API, { params: { page, size: pageSize }})
     .pipe(
       first()
     );
